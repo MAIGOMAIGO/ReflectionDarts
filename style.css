@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.Text{
+    width: 62.5vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+#scoreText{
+    margin-right: auto;
+}
+
+#timeText{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bulletsText{
+    margin-left: auto;
+}

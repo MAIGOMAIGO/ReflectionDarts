@@ -142,8 +142,7 @@ canvas.addEventListener('click',(event) => {
                 // check TimeOut
                 timeText.innerText = '0.0';
                 clearInterval(timer);
-                gameMode = 2;
-                alert('finish');
+                finish();
             }else{
                 targetTiming++;
                 // count down
@@ -239,25 +238,29 @@ function render(){
         if(bullets.length == 3){
             if(!bullets[0].enable && !bullets[1].enable && !bullets[2].enable){
                 clearInterval(timer);
-                gameMode = 2;
-                
-                ctx.fillStyle = 'rgb(120,120,120)';
-                ctx.fillRect(0,0,canvas.width,canvas.height);
-
-                const title = 'SCORE:'+String(score);
-                const titleFontSize = canvas.height/8;
-                ctx.font = 'bold '+titleFontSize+'px Arial';
-                ctx.fillStyle = 'rgb(255,255,0)';
-                const titleWidth = ctx.measureText(title).width;
-                ctx.fillText(title,(canvas.width-titleWidth)/2,titleFontSize*2);
-
-                const start = '画面をクリックして最初に戻る';
-                const startFontSize = canvas.height/14;
-                ctx.font = startFontSize+'px Arial';
-                const startWidth = ctx.measureText(start).width;
-                ctx.fillText(start,(canvas.width-startWidth)/2,startFontSize*10);
+                finish();
             } 
         }
         requestAnimationFrame(render);
     }
+}
+
+function finish(){
+    gameMode = 2;
+                
+    ctx.fillStyle = 'rgb(120,120,120)';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    const title = 'SCORE:'+String(score);
+    const titleFontSize = canvas.height/8;
+    ctx.font = 'bold '+titleFontSize+'px Arial';
+    ctx.fillStyle = 'rgb(255,255,0)';
+    const titleWidth = ctx.measureText(title).width;
+    ctx.fillText(title,(canvas.width-titleWidth)/2,titleFontSize*2);
+
+    const start = '画面をクリックして最初に戻る';
+    const startFontSize = canvas.height/14;
+    ctx.font = startFontSize+'px Arial';
+    const startWidth = ctx.measureText(start).width;
+    ctx.fillText(start,(canvas.width-startWidth)/2,startFontSize*10);
 }

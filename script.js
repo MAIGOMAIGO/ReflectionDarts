@@ -89,15 +89,15 @@ class pointBoard{
     update(){
         if(this.enable){
             // cheak hit
-            for(let i=0;i<bullets.length;i++){
-                const vx = bullets[i].x - this.x;
-                const vy = bullets[i].y - this.y;
-                if(this.radius+bullets[i].radius >= Math.sqrt(vx*vx+vy*vy)){
+            for(let bullet of bullets){
+                const vx = bullet.x - this.x;
+                const vy = bullet.y - this.y;
+                if(this.radius+bullet.radius >= Math.sqrt(vx*vx+vy*vy)){
                     this.enable = false;
-                    bullets[i].enable = false;
-                    bullets[i].y = canvas.height;
+                    bullet.enable = false;
+                    bullet.y = canvas.height;
 
-                    score += point[this.index]*bullets[i].numReflect;
+                    score += point[this.index]*bullet.numReflect;
                     scoreText.innerText = String(score);
                 }
             }
@@ -137,7 +137,7 @@ canvas.addEventListener('click',(event) => {
         ctx.fillRect(0,0,canvas.width,canvas.height);
 
         const finishTime = performance.now() + 60000;
-        timer = setInterval(function(){
+        timer = setInterval(() => {
             if(performance.now()>=finishTime){
                 // check TimeOut
                 timeText.innerText = '0.0';
@@ -214,13 +214,12 @@ function render(){
         ctx.fillStyle = 'rgb(120,120,120)';
         ctx.fillRect(0,0,canvas.width,canvas.height);
         // bullets update
-        for(let i=0;i<bullets.length;i++){
-            bullets[i].update();
-            
+        for(let bullet of bullets){
+            bullet.update();
         }
         // point update
-        for(let i=0;i<pointBoards.length;i++){
-            pointBoards[i].update();
+        for(let pointBoard of pointBoards){
+            pointBoard.update();
         }
         // new point Board
         if(targetTiming*pointBoards[0].dx > canvas.width/12){

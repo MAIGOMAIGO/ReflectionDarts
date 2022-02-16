@@ -90,9 +90,7 @@ class pointBoard{
         if(this.enable){
             // cheak hit
             for(let bullet of bullets){
-                const vx = bullet.x - this.x;
-                const vy = bullet.y - this.y;
-                if(this.radius+bullet.radius >= Math.sqrt(vx*vx+vy*vy)){
+                if((this.radius + bullet.radius)**2 >= (bullet.x - this.x)**2 + (bullet.y - this.y)**2){
                     this.enable = false;
                     bullet.enable = false;
                     bullet.y = canvas.height;
